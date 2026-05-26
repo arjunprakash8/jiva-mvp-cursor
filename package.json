@@ -4,6 +4,8 @@
   "main": "expo-router/entry",
   "scripts": {
     "start": "expo start --dev-client",
+    "start:web": "expo start --web",
+    "build:web": "expo export -p web",
     "android": "expo run:android",
     "ios": "expo run:ios",
     "prebuild": "expo prebuild",
@@ -17,7 +19,9 @@
     "expo-secure-store": "~13.0.2",
     "expo-dev-client": "~4.0.0",
     "react": "18.2.0",
+    "react-dom": "18.2.0",
     "react-native": "0.74.0",
+    "react-native-web": "~0.19.13",
     "react-native-safe-area-context": "4.10.1",
     "react-native-screens": "3.31.1",
     "react-native-svg": "15.2.0",

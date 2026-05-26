@@ -12,7 +12,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import * as SecureStore from 'expo-secure-store';
+import { getStorageItem, setStorageItem, deleteStorageItem } from '../utils/storage';
 import { Ionicons } from '@expo/vector-icons';
 import Glass from '../components/Glass';
 import { C, T, SPACING, RADIUS } from '../constants/theme';
@@ -38,7 +38,7 @@ export default function LoginScreen({
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    SecureStore.getItemAsync(EMAIL_KEY).then((saved) => {
+    getStorageItem(EMAIL_KEY).then((saved) => {
       if (saved) setEmail(saved);
     });
   }, []);
@@ -55,8 +55,8 @@ export default function LoginScreen({
 
     try {
       await onLogin(trimmedEmail, password);
-      await SecureStore.setItemAsync(EMAIL_KEY, trimmedEmail);
-      await SecureStore.setItemAsync(TOKEN_KEY, `session_${Date.now()}`);
+      await setStorageItem(EMAIL_KEY, trimmedEmail);
+      await setStorageItem(TOKEN_KEY, `session_${Date.now()}`);
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Login failed. Try again.';
       setError(message);
@@ -160,11 +160,11 @@ export default function LoginScreen({
 }
 
 export async function clearAuthSession(): Promise<void> {
-  await SecureStore.deleteItemAsync(TOKEN_KEY);
+  await deleteStorageItem(TOKEN_KEY);
 }
 
 export async function getStoredAuthToken(): Promise<string | null> {
-  return SecureStore.getItemAsync(TOKEN_KEY);
+  return getStorageItem(TOKEN_KEY);
 }
 
 const styles = StyleSheet.create({

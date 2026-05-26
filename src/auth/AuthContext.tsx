@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
-import * as SecureStore from 'expo-secure-store';
-import { User } from '../src/types';
+import { getStorageItem, setStorageItem, deleteStorageItem } from '../utils/storage';
+import { User } from '../types';
 
 interface AuthContextValue {
   user: User | null;
@@ -30,7 +30,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     (async () => {
       try {
-        const stored = await SecureStore.getItemAsync(USER_KEY);
+        const stored = await getStorageItem(USER_KEY);
         if (stored) setUser(JSON.parse(stored));
       } catch {
         // no stored user
@@ -46,20 +46,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       name: email.split('@')[0],
       email,
     };
-    await SecureStore.setItemAsync(USER_KEY, JSON.stringify(u));
-    await SecureStore.setItemAsync(AUTH_KEY, 'token');
+    await setStorageItem(USER_KEY, JSON.stringify(u));
+    await setStorageItem(AUTH_KEY, 'token');
     setUser(u);
   }, []);
 
   const signup = useCallback(async (newUser: User) => {
-    await SecureStore.setItemAsync(USER_KEY, JSON.stringify(newUser));
-    await SecureStore.setItemAsync(AUTH_KEY, 'token');
+    await setStorageItem(USER_KEY, JSON.stringify(newUser));
+    await setStorageItem(AUTH_KEY, 'token');
     setUser(newUser);
   }, []);
 
   const logout = useCallback(async () => {
-    await SecureStore.deleteItemAsync(USER_KEY);
-    await SecureStore.deleteItemAsync(AUTH_KEY);
+    await deleteStorageItem(USER_KEY);
+    await deleteStorageItem(AUTH_KEY);
     setUser(null);
   }, []);
 

@@ -9,6 +9,10 @@
     "splash": {
       "backgroundColor": "#020617"
     },
+    "web": {
+      "bundler": "metro",
+      "output": "static"
+    },
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.jiva.health",
