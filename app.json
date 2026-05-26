@@ -1,0 +1,37 @@
+{
+  "expo": {
+    "name": "JIVA",
+    "slug": "jiva-mvp",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "jiva",
+    "backgroundColor": "#020617",
+    "splash": {
+      "backgroundColor": "#020617"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.jiva.health",
+      "infoPlist": {
+        "NSBluetoothAlwaysUsageDescription": "JIVA needs Bluetooth to connect to your JIVA Band.",
+        "NSBluetoothPeripheralUsageDescription": "JIVA needs Bluetooth to connect to your JIVA Band."
+      }
+    },
+    "android": {
+      "package": "com.jiva.health",
+      "permissions": [
+        "android.permission.BLUETOOTH",
+        "android.permission.BLUETOOTH_ADMIN",
+        "android.permission.BLUETOOTH_SCAN",
+        "android.permission.BLUETOOTH_CONNECT",
+        "android.permission.BLUETOOTH_ADVERTISE",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION"
+      ]
+    },
+    "plugins": [
+      "expo-router",
+      "./plugins/withCssBleSdk.js"
+    ]
+  }
+}
