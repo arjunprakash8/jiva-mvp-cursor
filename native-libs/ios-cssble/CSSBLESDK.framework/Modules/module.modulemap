@@ -1,0 +1,6 @@
+framework module CSSBLESDK {
+  umbrella header "CSSBLESDK.h"
+  export *
+
+  module * { export * }
+}

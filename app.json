@@ -16,6 +16,7 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.jiva.health",
+      "deploymentTarget": "13.4",
       "infoPlist": {
         "NSBluetoothAlwaysUsageDescription": "JIVA needs Bluetooth to connect to your JIVA Band.",
         "NSBluetoothPeripheralUsageDescription": "JIVA needs Bluetooth to connect to your JIVA Band."
